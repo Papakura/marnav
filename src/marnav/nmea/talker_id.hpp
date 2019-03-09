@@ -15,6 +15,8 @@ enum class talker {
 	autopilot_general,
 	autopilot_magnetic,
 	beidou_2,
+	bilge_system,
+	bridge_navigational_watch_alarm_system,
 	computer_calculator,
 	communications_dsc,
 	computer_memory,

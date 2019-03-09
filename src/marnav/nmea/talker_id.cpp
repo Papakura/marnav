@@ -14,9 +14,11 @@ static constexpr const struct entry {
 } entries[] = {
 	// clang-format off
 	{talker::none,                                 ""  },
-	{talker::autopilot_general,                    "AG"},
-	{talker::autopilot_magnetic,                   "AP"},
-	{talker::beidou_2,                             "BD"},
+    {talker::autopilot_general,                    "AG"},
+    {talker::autopilot_magnetic,                   "AP"},
+    {talker::beidou_2,                             "BD"},
+    {talker::bilge_system, "BI"},
+    {bridge_navigational_watch_alarm_system, "BN"}
 	{talker::computer_calculator,                  "CC"},
 	{talker::communications_dsc,                   "CD"},
 	{talker::computer_memory,                      "CM"},
