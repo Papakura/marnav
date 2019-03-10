@@ -58,6 +58,7 @@
 #include <marnav/nmea/stn.hpp>
 #include <marnav/nmea/tds.hpp>
 #include <marnav/nmea/tfi.hpp>
+#include <marnav/nmea/tlb.hpp>
 #include <marnav/nmea/tll.hpp>
 #include <marnav/nmea/tpc.hpp>
 #include <marnav/nmea/tpr.hpp>
@@ -135,6 +136,7 @@ static const std::vector<entry> known_sentences = {
 	REGISTER_SENTENCE(wnc), REGISTER_SENTENCE(wpl), REGISTER_SENTENCE(xdr),
 	REGISTER_SENTENCE(xte), REGISTER_SENTENCE(xtr), REGISTER_SENTENCE(zda),
 	REGISTER_SENTENCE(zdl), REGISTER_SENTENCE(zfo), REGISTER_SENTENCE(ztg),
+	REGISTER_SENTENCE(tlb),
 
 	// vendor extensions
 	REGISTER_SENTENCE(pgrme), REGISTER_SENTENCE(pgrmm), REGISTER_SENTENCE(pgrmz),

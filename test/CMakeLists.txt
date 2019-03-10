@@ -79,6 +79,7 @@ target_sources(testrunner
 		nmea/Test_nmea_stn.cpp
 		nmea/Test_nmea_tds.cpp
 		nmea/Test_nmea_tfi.cpp
+		nmea/Test_nmea_tlb.cpp
 		nmea/Test_nmea_tll.cpp
 		nmea/Test_nmea_tpc.cpp
 		nmea/Test_nmea_tpr.cpp
