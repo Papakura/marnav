@@ -84,7 +84,7 @@ std::string to_string(const time & t)
 ///   are represented as milliseconds in nmea::time, this value can be between 1 and 3.
 ///   If the value is \c 0, the function \c to_string will be used. Values greater
 ///   than 3 are equivalent to 3.
-std::string format(const nmea::time & t, unsigned int width)
+std::string format(const nmea::time &t, unsigned int width, data_format /*f*/)
 {
 	if (width == 0)
 		return to_string(t);

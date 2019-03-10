@@ -525,5 +525,20 @@ void read(const std::string & s, waypoint & value, data_format fmt)
 	read(s, t, fmt);
 	value = waypoint{t};
 }
+
+void read(const std::string &s, target_acquisition &value, data_format fmt)
+{
+	typename std::underlying_type<target_acquisition>::type t;
+	read(s, t, fmt);
+	switch (t) {
+		case 'A': value = target_acquisition::Automatic;
+			break;
+		case 'M': value = target_acquisition::Manual;
+			break;
+		case 'R': value = target_acquisition::Reported;
+			break;
+		default: throw std::runtime_error{"invalid data for nmea/target_acquisition"};
+	}
+}
 }
 }

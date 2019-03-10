@@ -22,7 +22,7 @@ ttm::ttm(talker talk, fields::const_iterator first, fields::const_iterator last)
 
 	const auto dist = std::distance(first, last);
 
-	if ((dist < 13) || (dist > 15))
+	if ((dist < 13) || (dist > 16))
 		throw std::invalid_argument{"invalid number of fields in ttm"};
 
 	read(*(first + 0), target_number_);
@@ -34,10 +34,12 @@ ttm::ttm(talker talk, fields::const_iterator first, fields::const_iterator last)
 	read(*(first + 6), target_course_ref_);
 	read(*(first + 7), distance_cpa_);
 	read(*(first + 8), tcpa_);
-	read(*(first + 9), unknown_);
+	read(*(first + 9), speed_distance_units_);
 	read(*(first + 10), target_name_);
 	read(*(first + 11), target_status_);
 	read(*(first + 12), reference_target_);
+	read(*(first + 13), time_);
+	read(*(first + 14), acquisition_type_);
 }
 
 void ttm::append_data_to(std::string & s) const
@@ -51,10 +53,12 @@ void ttm::append_data_to(std::string & s) const
 	append(s, to_string(target_course_ref_));
 	append(s, to_string(distance_cpa_));
 	append(s, to_string(tcpa_));
-	append(s, to_string(unknown_));
+	append(s, to_string(speed_distance_units_));
 	append(s, to_string(target_name_));
 	append(s, to_string(target_status_));
 	append(s, to_string(reference_target_));
+	append(s, format(time_, 1));
+	append(s, to_string(acquisition_type_));
 }
 }
 }

@@ -38,7 +38,7 @@ std::string to_string(unit::velocity t);
 std::string to_string(unit::temperature t);
 std::string to_string(unit::pressure t);
 std::string to_string(const utils::mmsi & t);
-
+std::string to_string(target_acquisition a);
 template <class T> inline std::string to_string(const utils::optional<T> & data)
 {
 	if (!data)

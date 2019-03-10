@@ -2,7 +2,7 @@
 #define MARNAV__NMEA__TIME__HPP
 
 #include <string>
-
+#include "io.hpp"
 namespace marnav
 {
 namespace nmea
@@ -84,7 +84,7 @@ public:
 };
 
 std::string to_string(const time & t);
-std::string format(const nmea::time & t, unsigned int width);
+std::string format(const nmea::time &t, unsigned int width, data_format f = data_format::dec);
 
 /// Represents a duration up to 99 hours/59 minutes/59 seconds, suitable for NMEA purposes.
 ///

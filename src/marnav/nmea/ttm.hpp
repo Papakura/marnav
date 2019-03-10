@@ -2,6 +2,7 @@
 #define MARNAV__NMEA__TTM__HPP
 
 #include <marnav/nmea/sentence.hpp>
+#include <marnav/nmea/time.hpp>
 #include <marnav/utils/optional.hpp>
 
 namespace marnav
@@ -12,9 +13,9 @@ namespace nmea
 ///
 /// @code
 ///                                         11     13
-///        1  2   3   4 5   6   7 8   9   10|    12| 14
-///        |  |   |   | |   |   | |   |   | |    | | |
-/// $--TTM,xx,x.x,x.x,a,x.x,x.x,a,x.x,x.x,a,c--c,a,a*hh<CR><LF>
+///        1  2   3   4 5   6   7 8   9   10|    12| 14        15
+///        |  |   |   | |   |   | |   |   | |    | | |         |
+/// $--TTM,xx,x.x,x.x,a,x.x,x.x,a,x.x,x.x,a,c--c,a,a,hhmmss.ss,a*hh<CR><LF>
 /// @endcode
 ///
 /// Field Number:
@@ -31,11 +32,15 @@ namespace nmea
 ///     - R = Relative
 /// 8.  Distance of closest-point-of-approach
 /// 9.  Time until closest-point-of-approach "-" means increasing
-/// 10. ?
+/// 10. Speed/ distance units K/N/S
 /// 11. Target name
 /// 12. Target Status
 /// 13. Reference Target
-///
+/// 14. Time of data (UTC)
+/// 15. Type of acquisition
+///         A = Automatic
+///         M = manual
+//          R = reported
 /// @note Field 14 and 15 are not supported right now due to lack of
 ///       documentation. The sentence just ignores them. The other fields
 ///       are being processed.
@@ -68,11 +73,12 @@ private:
 	utils::optional<reference> target_course_ref_;
 	utils::optional<double> distance_cpa_; ///< Distance to closest point of approach
 	utils::optional<double> tcpa_;
-	utils::optional<char> unknown_;
+	utils::optional<char> speed_distance_units_;
 	utils::optional<std::string> target_name_;
-	utils::optional<char> target_status_;
+	utils::optional<target_status> target_status_;
 	utils::optional<char> reference_target_;
-
+	utils::optional<nmea::time> time_;
+	utils::optional<target_acquisition> acquisition_type_;
 public:
 	decltype(target_number_) get_target_number() const { return target_number_; }
 	decltype(target_distance_) get_target_distance() const { return target_distance_; }
@@ -89,10 +95,15 @@ public:
 	decltype(target_course_ref_) get_target_course_ref() const { return target_course_ref_; }
 	decltype(distance_cpa_) get_distance_cpa() const { return distance_cpa_; }
 	decltype(tcpa_) get_tcpa() const { return tcpa_; }
-	decltype(unknown_) get_unknown() const { return unknown_; }
+	decltype(speed_distance_units_) get_speed_distance_units() const
+	{ return speed_distance_units_; }
 	decltype(target_name_) get_target_name() const { return target_name_; }
 	decltype(target_status_) get_target_status() const { return target_status_; }
 	decltype(reference_target_) get_reference_target() const { return reference_target_; }
+	decltype(time_) get_time() const
+	{ return time_; }
+	decltype(acquisition_type_) get_acquisition() const
+	{ return acquisition_type_; }
 
 	void set_target_number(uint32_t t) noexcept { target_number_ = t; }
 	void set_target_distance(double t) noexcept { target_distance_ = t; }
@@ -109,10 +120,16 @@ public:
 	}
 	void set_distance_cpa(double t) noexcept { distance_cpa_ = t; }
 	void set_tcpa(double t) noexcept { tcpa_ = t; }
-	void set_unknown(char t) noexcept { unknown_ = t; }
+	void set_speed_distance_units(char t) noexcept
+	{ speed_distance_units_ = t; }
 	void set_target_name(const std::string & t) { target_name_ = t; }
-	void set_target_status(char t) noexcept { target_status_ = t; }
+	void set_target_status(target_status t) noexcept
+	{ target_status_ = t; }
 	void set_reference_target(char t) noexcept { reference_target_ = t; }
+	void set_time(const nmea::time &t) noexcept
+	{ time_ = t; }
+	void set_acquisition(const target_acquisition &t) noexcept
+	{ acquisition_type_ = t; }
 };
 }
 }

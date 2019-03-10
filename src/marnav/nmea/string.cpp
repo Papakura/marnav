@@ -248,5 +248,14 @@ std::string to_string(const utils::mmsi & t)
 	snprintf(buf, sizeof(buf), "%09u", static_cast<uint32_t>(t));
 	return buf;
 }
+std::string to_string(target_acquisition a)
+{
+	switch (a) {
+		case target_acquisition::Automatic: return "A";
+		case target_acquisition::Manual: return "M";
+		case target_acquisition::Reported: return "R";
+	}
+	return ""; // never reached, gcc does not get it, prevents compiler warning
+}
 }
 }

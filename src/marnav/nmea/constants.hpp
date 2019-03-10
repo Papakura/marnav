@@ -50,23 +50,32 @@ enum class target_status : char {
 	tracking ///< NMEA representation: 'T'
 };
 
+enum class target_acquisition: char
+{
+	Automatic, ///< 'A'
+	Manual, //< 'M'
+	Reported //< 'R'
+};
+
 /// Contains enumerations of units.
 namespace unit
 {
-/// Enumeration of unis of distance.
+/// Enumeration of units of distance.
 enum class distance : char {
 	meter, ///< NMEA representation: 'M'
 	feet, ///< NMEA representation: 'f'
 	nm, ///< NMEA representation: 'N' / nautical miles
 	km, ///< NMEA representation: 'K' / kilometers
-	fathom ///< NMEA representation: 'F'
+	fathom, ///< NMEA representation: 'F'
+	m ///< NMEA representation: 'S' / Statute miles
 };
 
 /// Enumeration of unis of velocity.
 enum class velocity : char {
 	knot, ///< NMEA representation: 'N'
 	kmh, ///< NMEA representation: 'K' / kilometers per hour
-	mps ///< NMEA representation: 'M' / meters per second
+	mps, ///< NMEA representation: 'M' / meters per second
+	mips ///< NMEA representation: 'S' / Statute miles per second
 };
 
 /// Enumeration of unis of temperature.

@@ -124,7 +124,7 @@ void read(
 void read(const std::string & s, unit::pressure & value, data_format fmt = data_format::none);
 void read(const std::string & s, utils::mmsi & value, data_format fmt = data_format::none);
 void read(const std::string & s, waypoint & value, data_format fmt = data_format::none);
-
+void read(const std::string &s, target_acquisition &value, data_format fmt = data_format::none);
 template <class T>
 inline void read(
 	const std::string & s, utils::optional<T> & value, data_format fmt = data_format::dec)
