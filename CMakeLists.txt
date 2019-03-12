@@ -51,11 +51,11 @@ option(ENABLE_BENCHMARK "Enable Benchmark" OFF)
 option(ENABLE_WARNING_HELL "Enable Warning Hell" OFF)
 option(ENABLE_SANITIZER "Enable Sanitizing (address, undefined)" OFF)
 option(ENABLE_AIS "Enable AIS support" ON)
-option(ENABLE_SEATALK "Enable SeaTalk support" OFF)
+option(ENABLE_SEATALK "Enable SeaTalk support" ON)
 option(ENABLE_IO "Enable IO support" ON)
 option(ENABLE_EXAMPLES "Enable Examples" ON)
 option(ENABLE_TESTS "Enable Tests" ON)
-option(ENABLE_TOOLS "Enable Tools" OFF)
+option(ENABLE_TOOLS "Enable Tools" ON)
 
 ### common
 message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")

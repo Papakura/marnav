@@ -66,6 +66,7 @@ enum class sentence_id : uint32_t {
 	TLB, ///< Target Label
 	TLL, ///< Target latitude and longitude
 	TTM, ///< Tracked Target Message
+	TXT, ///< Text transmission
 	VBW, ///< Dual Ground/Water Speed
 	VDM, ///< AIS
 	VDO, ///< AIS, own ship data

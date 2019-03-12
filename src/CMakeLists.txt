@@ -115,6 +115,7 @@ target_sources(marnav
 		marnav/nmea/tpc.cpp
 		marnav/nmea/tpr.cpp
 		marnav/nmea/tpt.cpp
+		marnav/nmea/txt.cpp
 		marnav/nmea/ttm.cpp
 		marnav/nmea/vbw.cpp
 		marnav/nmea/vdm.cpp
