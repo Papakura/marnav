@@ -44,6 +44,7 @@
 #include <marnav/nmea/mtw.hpp>
 #include <marnav/nmea/mwd.hpp>
 #include <marnav/nmea/mwv.hpp>
+#include <marnav/nmea/nak.hpp>
 #include <marnav/nmea/osd.hpp>
 #include <marnav/nmea/r00.hpp>
 #include <marnav/nmea/rma.hpp>
@@ -88,7 +89,7 @@
 #include <marnav/nmea/pgrmm.hpp>
 #include <marnav/nmea/pgrmz.hpp>
 #include <marnav/nmea/stalk.hpp>
-
+#include <marnav/nmea/query.hpp>
 /// @example parse_nmea.cpp
 /// This is an example on how to parse and handle NMEA sentences from a string.
 
@@ -137,7 +138,7 @@ static const std::vector<entry> known_sentences = {
 	REGISTER_SENTENCE(wnc), REGISTER_SENTENCE(wpl), REGISTER_SENTENCE(xdr),
 	REGISTER_SENTENCE(xte), REGISTER_SENTENCE(xtr), REGISTER_SENTENCE(zda),
 	REGISTER_SENTENCE(zdl), REGISTER_SENTENCE(zfo), REGISTER_SENTENCE(ztg),
-	REGISTER_SENTENCE(tlb), REGISTER_SENTENCE(txt),
+	REGISTER_SENTENCE(tlb), REGISTER_SENTENCE(txt), REGISTER_SENTENCE(nak),
 
 	// vendor extensions
 	REGISTER_SENTENCE(pgrme), REGISTER_SENTENCE(pgrmm), REGISTER_SENTENCE(pgrmz),
@@ -201,6 +202,8 @@ std::tuple<talker, std::string> parse_address(const std::string & address)
 		throw std::invalid_argument{"unknown or malformed address field: [" + address + "]"};
 
 	const auto tag = address.substr(2, 3);
+	if(tag.back() == sentence::query_token)
+		return make_tuple(make_talker(address.substr(0, 2)),tag);
 	if (find_tag(tag) == std::end(known_sentences))
 		throw std::invalid_argument("unknown regular tag in address: [" + address + "]");
 	return make_tuple(make_talker(address.substr(0, 2)), tag);
@@ -323,6 +326,12 @@ std::unique_ptr<sentence> make_sentence(const std::string & s, checksum_handling
 	std::string tag_block;
 	std::vector<std::string> fields;
 	std::tie(talk, tag, tag_block, fields) = detail::extract_sentence_information(s, chksum);
+	if(tag.back() == sentence::query_token)
+	{
+		return std::unique_ptr<sentence>(
+				new query(talk, tag,
+						std::next(std::begin(fields)), std::prev(std::end(fields))));
+	}
 	auto result = detail::find_parse_func(tag)(
 		talk, std::next(std::begin(fields)), std::prev(std::end(fields)));
 	result->set_tag_block(tag_block);

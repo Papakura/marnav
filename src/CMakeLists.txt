@@ -96,6 +96,7 @@ target_sources(marnav
 		marnav/nmea/mtw.cpp
 		marnav/nmea/mwd.cpp
 		marnav/nmea/mwv.cpp
+		marnav/nmea/nak.cpp
 		marnav/nmea/osd.cpp
 		marnav/nmea/r00.cpp
 		marnav/nmea/rma.cpp
@@ -140,6 +141,7 @@ target_sources(marnav
 		marnav/nmea/pgrmm.cpp
 		marnav/nmea/pgrmz.cpp
 		marnav/nmea/stalk.cpp
+		marnav/nmea/query.cpp
 	)
 
 install(
@@ -200,7 +202,9 @@ install(
 		marnav/nmea/mtw.hpp
 		marnav/nmea/mwd.hpp
 		marnav/nmea/mwv.hpp
+		marnav/nmea/nak.hpp
 		marnav/nmea/osd.hpp
+		marnav/nmea/query.hpp
 		marnav/nmea/r00.hpp
 		marnav/nmea/rma.hpp
 		marnav/nmea/rmb.hpp
@@ -215,10 +219,12 @@ install(
 		marnav/nmea/tds.hpp
 		marnav/nmea/tfi.hpp
 		marnav/nmea/tll.hpp
+		marnav/nmea/tlb.hpp
 		marnav/nmea/tpc.hpp
 		marnav/nmea/tpr.hpp
 		marnav/nmea/tpt.hpp
 		marnav/nmea/ttm.hpp
+        marnav/nmea/txt.hpp
 		marnav/nmea/vbw.hpp
 		marnav/nmea/vdm.hpp
 		marnav/nmea/vdo.hpp

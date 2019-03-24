@@ -125,6 +125,22 @@ enum class type_of_point : char {
 	reference, ///< NMEA representation: 'R'
 	wheelover, ///< NMEA representation: 'W'
 };
+
+enum class reason_code : uint8_t {
+	query_not_supported, ///< Query functionality not supported
+	sentence_not_supported, ///< Sentence formatter not supported
+	sentence_not_enabled, ///< Sentence formatter supported, but not enabled
+	sentence_not_available, ///< Sentence formatter supported and enabled, but temporarily unavailable (e.g. data field problem, unit
+							///< in initialize state, or in diagnostic state, etc.)
+	sentence_query_not_supported, ///< Sentence formatter supported, but query for this sentence formatter is not supported.
+	access_denied, ///< Access denied, for sentence formatter requested
+	bad_checksum, ///< Sentence not accepted due to bad checksum
+	listener_processing_issue, ///< Sentence not accepted due to listener processing issue
+	cannot_perform_operation = 10, ///< Cannot perform the requested operation
+	data_field_problem, ///< Cannot fulfil request or command because of a problem with a data field in the sentence
+	other = 49,///< other reason as described in data field 5
+
+};
 }
 }
 

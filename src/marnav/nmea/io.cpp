@@ -540,5 +540,13 @@ void read(const std::string &s, target_acquisition &value, data_format fmt)
 		default: throw std::runtime_error{"invalid data for nmea/target_acquisition"};
 	}
 }
+
+void read(const std::string &s, reason_code &value, data_format fmt)
+{
+	typename std::underlying_type<reason_code>::type t;
+	read(s, t, fmt);
+	value = static_cast<reason_code >(t);
+}
+
 }
 }

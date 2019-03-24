@@ -257,5 +257,11 @@ std::string to_string(target_acquisition a)
 	}
 	return ""; // never reached, gcc does not get it, prevents compiler warning
 }
+
+std::string to_string(reason_code c)
+{
+	return to_string(static_cast<uint8_t>(c));
+}
+
 }
 }

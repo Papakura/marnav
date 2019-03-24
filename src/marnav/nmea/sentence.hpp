@@ -45,6 +45,9 @@ public:
 	/// The start and end token of a tag block.
 	constexpr static char tag_block_token = '\\';
 
+	/// The end token for a query message
+	constexpr static char query_token = 'Q';
+
 	virtual ~sentence() = default;
 
 	sentence() = delete;
